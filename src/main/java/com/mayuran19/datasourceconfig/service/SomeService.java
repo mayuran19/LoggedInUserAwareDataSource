@@ -33,5 +33,12 @@ public class SomeService {
             list.add(someTable);
         }
         someRepository.saveAll(list);
+
+        list.forEach(someTable -> {
+            someTable.setSomeText("Updated text");
+        });
+        someRepository.saveAll(list);
+
+        someRepository.deleteAll(list);
     }
 }
