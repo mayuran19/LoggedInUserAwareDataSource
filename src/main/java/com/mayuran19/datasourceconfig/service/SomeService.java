@@ -5,6 +5,7 @@ import com.mayuran19.datasourceconfig.repository.SomeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 @Service
@@ -17,9 +18,20 @@ public class SomeService {
     }
 
     public void testWallet(){
-        SomeTable someTable = new SomeTable();
-        someTable.setId(new Random().nextLong());
-        someTable.setSomeText("some text");
-        someRepository.save(someTable);
+        for(int i = 0; i < 100; i++){
+            SomeTable someTable = new SomeTable();
+            someTable.setId(new Random().nextLong());
+            someTable.setSomeText("some text");
+            someRepository.save(someTable);
+        }
+
+        var list = new ArrayList<SomeTable>();
+        for(int i = 0; i < 100; i++){
+            SomeTable someTable = new SomeTable();
+            someTable.setId(new Random().nextLong());
+            someTable.setSomeText("some text");
+            list.add(someTable);
+        }
+        someRepository.saveAll(list);
     }
 }
