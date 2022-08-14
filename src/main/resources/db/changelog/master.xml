@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="db.changelog-master.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="Mayuran">
+        <sqlFile path="audit/001_create_pg_audit.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="2" author="Mayuran">
+        <createTable tableName="some_table">
+            <column name="id" type="bigint"></column>
+            <column name="some_text" type="varchar"></column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Mayuran">
+        <sql>
+            SELECT audit.audit_table('some_table');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
